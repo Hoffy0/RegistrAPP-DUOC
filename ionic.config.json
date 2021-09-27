@@ -1,0 +1,7 @@
+{
+  "name": "RegistrAPP-DUOC",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
