@@ -12,4 +12,8 @@ export class ForgotPasswordPage implements OnInit {
   ngOnInit() {
   }
 
+  recovery(email){
+    console.log(email)
+  }
+
 }
