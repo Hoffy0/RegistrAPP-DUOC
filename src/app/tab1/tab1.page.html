@@ -1,15 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-text *ngIf="hour >= 0 && hour < 12">  <h1> Buenos Días,   {{userData.name}} </h1> </ion-text>
+      <ion-text *ngIf="hour >= 12 && hour < 18"> <h1> Buenas Tardes, {{userData.name}} </h1> </ion-text>
+      <ion-text *ngIf="hour >= 18 && hour < 24"> <h1> Buenas Noches, {{userData.name}} </h1> </ion-text>
     </ion-toolbar>
   </ion-header>
 

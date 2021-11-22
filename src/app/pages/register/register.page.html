@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="register(email, rut, name, lastName, sLastName, password)">
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input type="email"
+                 placeholder="1234@example.com"
+                 name="email"
+                 formControlName="email"
+                 #email
+                 required>
+      </ion-input>
+      <div *ngIf="f.email.touched && f.email.invalid" class="">
+        <ion-text color="danger" *ngIf="f.email.errors && f.email.errors.required"> Email is required.      </ion-text>
+        <ion-text color="danger" *ngIf="f.email.errors && f.email.errors.email"> Please, enter valid email address. </ion-text>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">RUT:</ion-label>
+      <ion-input type="number"
+                 placeholder="12345678-9"
+                 name="rut"
+                 formControlName="rut"
+                 #rut>
+      </ion-input>
+      <div *ngIf="f.rut.touched && f.rut.invalid" class="">
+        <ion-text color="danger" *ngIf="f.rut.errors && f.rut.errors.required"> El rut es requerido.      </ion-text>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nombre:</ion-label>
+      <ion-input type="text"
+                 placeholder="Juan Carlos"
+                 name="name"
+                 formControlName="name"
+                 #name>
+      </ion-input>
+      <div *ngIf="f.name.touched && f.name.invalid" class="">
+        <ion-text color="danger" *ngIf="f.name.errors && f.name.errors.required"> El nombre es requerido.      </ion-text>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Apellido Paterno:</ion-label>
+      <ion-input type="text"
+                 placeholder="Bodoque"
+                 name="lastName"
+                 formControlName="lastName"
+                 #lastName>
+      </ion-input>
+      <div *ngIf="f.lastName.touched && f.lastName.invalid" class="">
+        <ion-text color="danger" *ngIf="f.lastName.errors && f.lastName.errors.required"> El apellido paterno es requerido.      </ion-text>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Apellido Materno:</ion-label>
+      <ion-input type="text"
+                 placeholder=""
+                 name="sLastName"
+                 formControlName="sLastName"
+                 #sLastName>
+      </ion-input>
+      <div *ngIf="f.sLastName.touched && f.sLastName.invalid" class="">
+        <ion-text color="danger" *ngIf="f.sLastName.errors && f.sLastName.errors.required"> El apellido materno es requerido.      </ion-text>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña:</ion-label>
+      <ion-input type="password"
+                 placeholder="***************"
+                 name="password"
+                 formControlName="password"
+                 #password>
+      </ion-input>
+      <div *ngIf="f.password.touched && f.password.invalid" class="">
+        <ion-text color="danger" *ngIf="f.password.errors && f.password.errors.required"> La contraseña es requerida.      </ion-text>
+      </div>
+    </ion-item>
+    <ion-button  type="submit" expand="block" [disabled]="
+                                                          f.email.invalid || 
+                                                          f.rut.invalid || 
+                                                          f.name.invalid || 
+                                                          f.lastName.invalid || 
+                                                          f.sLastName.invalid || 
+                                                          f.password.invalid ">
+      Registrar
+    </ion-button>
+  </form>
+</ion-content>

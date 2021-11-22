@@ -22,24 +22,24 @@ export class LoginPage implements OnInit {
 
   login(email, password){
     // console.log(email.value, password.value)
-    try {
-      const userData = {
-        email: email.value,
-        password: password.value
-      }
-      this.auth.login(userData).subscribe(
-        res => {
-          console.log(res)
-        },
-        err => {
-          console.error(err)
-        }
-      );
-    } catch (err) {
-      console.error(err)
+    
+    const userData = {
+      email: email.value,
+      password: password.value
     }
-  }
-
+    this.auth.login(userData).subscribe(
+      res => {
+        console.log(res)
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/home/tabs/tab1']);
+      },
+      err => {
+        console.error(err)
+      }
+    )
+  };
+  
+  
   forgotPass(){
     this.router.navigate(['/forgot-password']);
   }
