@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,28 +13,35 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private loadingController: LoadingController,
+    private auth: AuthService
   ) { }
 
   ngOnInit() {
+
+  }
+
+  login(email, password){
+    // console.log(email.value, password.value)
+    try {
+      const userData = {
+        email: email.value,
+        password: password.value
+      }
+      this.auth.login(userData).subscribe(
+        res => {
+          console.log(res)
+        },
+        err => {
+          console.error(err)
+        }
+      );
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   forgotPass(){
     this.router.navigate(['/forgot-password']);
-  }
-
-  async login(email, password){
-    // console.log(email.value);
-    // console.log(password.value)
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-      message: 'Validando datos...',
-      duration: 2000
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
-    this.router.navigate(['/home/tabs/tab1'])
   }
 
 
