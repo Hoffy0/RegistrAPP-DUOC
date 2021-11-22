@@ -7,17 +7,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form action="">
+<ion-content class="ion-padding">
 
-    <ion-item lines="full">
-      <ion-label position="floating"> Email </ion-label>
-      <ion-input type="email" required #email></ion-input>
+  <form #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+
+    <ion-list-header >
+      <ion-label>Formulario valido: {{formulario.valid}}</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label position="floating">Email:</ion-label>
+      <ion-input  
+                 type="email"
+                 placeholder="1234@example.com"
+                 name="email"
+                 [(ngModel)]= "usuario.email"
+                 required
+                 pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"></ion-input>
     </ion-item>
 
-    <ion-item lines="full">
-      <ion-label position="floating"> Password </ion-label>
-      <ion-input type="password" required #password></ion-input>
+    <ion-item>
+      <ion-label position="floating">Password:</ion-label>
+      <ion-input type="password" 
+                 placeholder="Your pass Here!"
+                 name="password"
+                 [(ngModel)]= "usuario.password"
+                 required></ion-input>
     </ion-item>
 
     <ion-row>
@@ -28,14 +43,13 @@
       </ion-col>
     </ion-row>
 
-    <hr>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" (click)="login(email, password)" expand="block"> Entrar </ion-button>
-      </ion-col>
-    </ion-row>
+    <ion-button  type="submit" expand="block" [disabled]="formulario.invalid"
+                 routerLink="/tab/asistencia" >
+      Login
+    </ion-button>
+
     <span class="divider line one-line center-span"> O </span>
-    
+
     <ion-row>
       <ion-col>
         <ion-button color="danger" type="submit" (click)="loginGoogle()" expand="block">
@@ -49,5 +63,10 @@
         </ion-button>
       </ion-col>
     </ion-row>
+
   </form>
-</ion-content>
+
+
+
+
+

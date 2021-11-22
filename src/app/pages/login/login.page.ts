@@ -1,4 +1,6 @@
+/* eslint-disable no-trailing-spaces */
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+
+  nombre = 'Pablo';
+  usuario = {
+    email: '',
+    password: ''
+
+  };
 
   constructor(
     private router: Router
@@ -18,5 +28,13 @@ export class LoginPage implements OnInit {
   forgotPass(){
     this.router.navigate(['/forgot-password']);
   }
+
+  onSubmit(formulario: NgForm){
+    console.log('submit');
+    console.log(this.usuario);
+    console.log(formulario);
+  }
+
+  
 
 }
